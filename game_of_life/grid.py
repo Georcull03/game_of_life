@@ -27,7 +27,7 @@ class LifeGrid:
         } & self.pattern.alive_cells
         come_alive = {
             cell for cell, num in num_neightbours.items() if num == 3
-        } & self.pattern.alive_cells
+        } - self.pattern.alive_cells
 
         self.pattern.alive_cells = stay_alive | come_alive
 
@@ -35,4 +35,7 @@ class LifeGrid:
         pass
 
     def __str__(self):
-        pass
+        return (
+            f"{self.pattern.name}:\n"
+            f"Alive cells -> {sorted(self.pattern.alive_cells)}"
+        )
